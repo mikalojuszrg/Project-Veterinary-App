@@ -1,0 +1,17 @@
+.button {
+  &__active {
+    background-color: rgb(255, 132, 0);
+    color: white;
+    border: 1px solid rgb(255, 132, 0);
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+  }
+
+  &__inactive {
+    background-color: white;
+    color: rgb(255, 132, 0);
+    border: 1px solid rgb(255, 132, 0);
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+  }
+}
