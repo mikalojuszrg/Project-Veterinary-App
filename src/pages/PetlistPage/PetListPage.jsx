@@ -1,14 +1,17 @@
+import styles from "./PetListPage.module.scss";
 import { useEffect } from "react";
 import { useState } from "react";
 import Header from "../../components/Header/Header";
 import PetInfoCard from "../../components/PetInfoCard/PetInfoCard";
 import PetsForm from "../../components/PetsForm/PetsForm";
+import Button from "../../components/Button/Button";
 
 const PetListPage = () => {
   const [petInfo, setPetInfo] = useState([]);
   const [petName, setPetName] = useState("");
   const [petAge, setPetAge] = useState("");
   const [petEmail, setPetEmail] = useState("");
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/pets")
@@ -51,10 +54,30 @@ const PetListPage = () => {
       });
   };
 
+  console.log(show);
+
   return (
-    <main>
+    <main className={styles.container}>
       <Header />
-      <aside>
+      <div className={styles.container__subheading}>
+        <h1>Pet List</h1>
+        <Button
+          active={true}
+          onClick={() => setShow((prevValue) => !prevValue)}
+        >
+          ADD PET
+        </Button>
+      </div>
+      {/* <aside
+        className={`${styles.container__modal} ${
+          show ? styles.container__modalOn : styles.container__modalOff
+        }`}
+      > */}
+      <aside
+        className={
+          show ? styles.container__modalOn : styles.container__modalOff
+        }
+      >
         <PetsForm
           handleSubmit={handleSubmit}
           petAge={petAge}
@@ -63,6 +86,7 @@ const PetListPage = () => {
           setPetEmail={setPetEmail}
           petName={petName}
           setPetName={setPetName}
+          onClick={() => setShow(false)}
         />
       </aside>
       {petInfo &&

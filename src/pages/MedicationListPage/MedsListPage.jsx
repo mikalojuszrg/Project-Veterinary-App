@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import styles from "./MedsListPage.module.scss";
+import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import MedsForm from "../../components/MedsForm/MedsForm";
 import MedsInfocard from "../../components/MedsInfoCard/MedsInfocard";
@@ -7,6 +9,7 @@ const MedicationListPage = () => {
   const [meds, setMeds] = useState(undefined);
   const [medsName, setMedsName] = useState("");
   const [medsDescription, setMedsDescription] = useState("");
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/meds")
@@ -48,17 +51,33 @@ const MedicationListPage = () => {
 
   return (
     <main>
-      <Header />
-      <aside>
+      <Header className={styles.container} />
+      <div className={styles.container__subheading}>
+        <h1>Medication List</h1>
+        <Button
+          active={true}
+          onClick={() => setShow((prevValue) => !prevValue)}
+        >
+          ADD MEDICATION
+        </Button>
+      </div>
+      <aside
+        className={
+          show ? styles.container__modalOn : styles.container__modalOff
+        }
+      >
         <MedsForm
           handleSubmit={handleSubmit}
           medsName={medsName}
           setMedsName={setMedsName}
           medsDescription={medsDescription}
           setMedsDescription={setMedsDescription}
+          onClick={() => setShow(false)}
         />
       </aside>
-      {meds && meds.map((med) => <MedsInfocard key={med.id} med={med} />)}
+      <div className={styles.container__medications}>
+        {meds && meds.map((med) => <MedsInfocard key={med.id} med={med} />)}
+      </div>
     </main>
   );
 };

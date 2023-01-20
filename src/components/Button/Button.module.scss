@@ -6,6 +6,10 @@
     padding: 0.5rem 1rem;
     border-radius: 0.4rem;
     cursor: pointer;
+
+    &:hover {
+      background-color: rgb(215, 114, 6);
+    }
   }
 
   &__inactive {
@@ -15,5 +19,9 @@
     padding: 0.5rem 1rem;
     border-radius: 0.4rem;
     cursor: pointer;
+
+    &:hover {
+      background-color: rgb(233, 232, 232);
+    }
   }
 }

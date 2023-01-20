@@ -1,0 +1,30 @@
+.container {
+  &__subheading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__modalOn {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__modalOff {
+    display: none;
+  }
+
+  &__medications {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}
