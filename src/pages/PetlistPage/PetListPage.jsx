@@ -11,11 +11,16 @@ const PetListPage = () => {
       .then((response) => setPetInfo(response));
   }, []);
 
-  console.log(petInfo);
+  const handleDelete = (deletedPet) => {
+    setPetInfo(petInfo.filter((pet) => pet.id !== deletedPet.id));
+  };
 
   return (
     <div>
-      {petInfo && petInfo.map((pet) => <PetInfoCard key={pet.id} pet={pet} />)}
+      {petInfo &&
+        petInfo.map((pet) => (
+          <PetInfoCard key={pet.id} pet={pet} handleDelete={handleDelete} />
+        ))}
     </div>
   );
 };
