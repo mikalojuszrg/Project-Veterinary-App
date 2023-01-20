@@ -1,0 +1,14 @@
+.navigation {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      color: rgb(74, 72, 72);
+    }
+  }
+}

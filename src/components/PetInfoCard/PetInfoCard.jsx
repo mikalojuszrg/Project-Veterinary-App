@@ -2,18 +2,20 @@ import moment from "moment";
 import styles from "./PetInfoCard.module.scss";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 const PetInfoCard = ({ pet, handleDelete }) => {
   const { id } = pet;
 
   const deletePetData = () => {
     fetch(`https://glittery-dull-snickerdoodle.glitch.me/v1/pets/${id}`, {
-      method: "DELETE",
+      method: "PUT", // update to PUT
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
+      body: JSON.stringify({
+        archived: 1, // send the archived field with value 1
+      }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -22,11 +24,11 @@ const PetInfoCard = ({ pet, handleDelete }) => {
         return response.json();
       })
       .then((data) => {
-        // handle successful deletion
-        handleDelete(pet);
+        if (data.success) {
+          handleDelete(pet);
+        }
       })
       .catch((error) => {
-        // handle error
         console.error(error);
       });
   };
@@ -43,7 +45,6 @@ const PetInfoCard = ({ pet, handleDelete }) => {
         <Button onClick={deletePetData} active={false}>
           DELETE
         </Button>
-        {pet.archived}
       </div>
     </div>
   );

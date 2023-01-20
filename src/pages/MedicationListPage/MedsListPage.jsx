@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Header from "../../components/Header/Header";
 import MedsForm from "../../components/MedsForm/MedsForm";
 import MedsInfocard from "../../components/MedsInfoCard/MedsInfocard";
 
@@ -46,17 +47,19 @@ const MedicationListPage = () => {
   };
 
   return (
-    <div>
-      <MedsForm
-        handleSubmit={handleSubmit}
-        medsName={medsName}
-        setMedsName={setMedsName}
-        medsDescription={medsDescription}
-        setMedsDescription={setMedsDescription}
-      />
-
+    <main>
+      <Header />
+      <aside>
+        <MedsForm
+          handleSubmit={handleSubmit}
+          medsName={medsName}
+          setMedsName={setMedsName}
+          medsDescription={medsDescription}
+          setMedsDescription={setMedsDescription}
+        />
+      </aside>
       {meds && meds.map((med) => <MedsInfocard key={med.id} med={med} />)}
-    </div>
+    </main>
   );
 };
 
