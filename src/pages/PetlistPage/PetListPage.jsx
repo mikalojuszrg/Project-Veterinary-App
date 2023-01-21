@@ -19,8 +19,23 @@ const PetListPage = () => {
       .then((response) => setPetInfo(response));
   }, []);
 
-  const handleDelete = (deletedPet) => {
-    setPetInfo(petInfo.filter((pet) => pet.id !== deletedPet));
+  const handleDelete = (id) => {
+    fetch(`https://glittery-dull-snickerdoodle.glitch.me/v1/pets/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+        throw new Error("Some error occured");
+      })
+      .then((res) => {
+        console.log("Pet deleted successfully");
+        setPetInfo(petInfo.filter((pet) => pet.id !== id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -57,7 +72,7 @@ const PetListPage = () => {
   console.log(show);
 
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <Header />
       <div className={styles.container__subheading}>
         <h1>Pet List</h1>
@@ -68,11 +83,6 @@ const PetListPage = () => {
           ADD PET
         </Button>
       </div>
-      {/* <aside
-        className={`${styles.container__modal} ${
-          show ? styles.container__modalOn : styles.container__modalOff
-        }`}
-      > */}
       <aside
         className={
           show ? styles.container__modalOn : styles.container__modalOff
@@ -89,11 +99,13 @@ const PetListPage = () => {
           onClick={() => setShow(false)}
         />
       </aside>
-      {petInfo &&
-        petInfo.map((pet) => (
-          <PetInfoCard key={pet.id} pet={pet} handleDelete={handleDelete} />
-        ))}
-    </main>
+      <main className={styles.container__pets}>
+        {petInfo &&
+          petInfo.map((pet) => (
+            <PetInfoCard key={pet.id} pet={pet} handleDelete={handleDelete} />
+          ))}
+      </main>
+    </div>
   );
 };
 

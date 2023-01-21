@@ -22,19 +22,19 @@ const PetsForm = ({
         type="text"
         value={petName}
         onChange={(e) => setPetName(e.target.value)}
-        placeholder="Pet name"
+        placeholder="Name"
       />
       <input
         type="text"
         value={petAge}
         onChange={(e) => setPetAge(e.target.value)}
-        placeholder="Pet age"
+        placeholder="MM/DD/YYYY"
       />
       <input
         type="email"
         value={petEmail}
         onChange={(e) => setPetEmail(e.target.value)}
-        placeholder="Email"
+        placeholder="Email@email.com"
       />
       <Button active={false} type="submit" className={styles.form__openButton}>
         ADD PET

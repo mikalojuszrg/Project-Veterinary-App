@@ -50,7 +50,7 @@ const MedicationListPage = () => {
   };
 
   return (
-    <main>
+    <div>
       <Header className={styles.container} />
       <div className={styles.container__subheading}>
         <h1>Medication List</h1>
@@ -75,10 +75,10 @@ const MedicationListPage = () => {
           onClick={() => setShow(false)}
         />
       </aside>
-      <div className={styles.container__medications}>
+      <main className={styles.container__medications}>
         {meds && meds.map((med) => <MedsInfocard key={med.id} med={med} />)}
-      </div>
-    </main>
+      </main>
+    </div>
   );
 };
 

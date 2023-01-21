@@ -7,30 +7,7 @@ const PetInfoCard = ({ pet, handleDelete }) => {
   const { id } = pet;
 
   const deletePetData = () => {
-    fetch(`https://glittery-dull-snickerdoodle.glitch.me/v1/pets/${id}`, {
-      method: "PUT", // update to PUT
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        archived: 1, // send the archived field with value 1
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to delete pet data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.success) {
-          handleDelete(pet);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    handleDelete(id);
   };
 
   return (

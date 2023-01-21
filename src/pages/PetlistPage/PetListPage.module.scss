@@ -20,4 +20,11 @@
   &__modalOff {
     display: none;
   }
+
+  &__pets {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 2rem;
+  }
 }
