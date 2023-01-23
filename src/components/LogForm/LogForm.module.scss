@@ -28,7 +28,9 @@
     }
   }
 
-  input {
+  input,
+  select,
+  textarea {
     padding: 1rem 1rem;
     border-radius: 0.4rem;
     border: none;

@@ -1,0 +1,35 @@
+.container {
+  &__subheading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__modalOn {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__modalOff {
+    display: none;
+  }
+
+  &__logs {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 2rem;
+  }
+}

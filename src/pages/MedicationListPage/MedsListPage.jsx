@@ -15,7 +15,13 @@ const MedicationListPage = () => {
     fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/meds")
       .then((resp) => resp.json())
       .then((response) => setMeds(response));
-  }, [medsName, medsDescription]);
+  }, []);
+
+  // useEffect(() => {
+  //   fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/meds")
+  //     .then((resp) => resp.json())
+  //     .then((response) => setMeds(response));
+  // }, [medsName, medsDescription]);
 
   let handleSubmit = (e) => {
     e.preventDefault();

@@ -13,9 +13,9 @@ const MedsForm = ({
   return (
     <div>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <button className={styles.form__closeButton} onClick={onClick}>
+        <span className={styles.form__closeButton} onClick={onClick}>
           <GrClose />
-        </button>
+        </span>
         <h2 className={styles.form__heading}>Medication form</h2>
         <input
           type="text"
