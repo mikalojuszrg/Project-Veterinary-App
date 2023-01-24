@@ -12,10 +12,10 @@ const MedicationListPage = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/meds")
+    fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/meds?limit=100")
       .then((resp) => resp.json())
       .then((response) => setMeds(response));
-  }, []);
+  }, [medsName, medsDescription]);
 
   // useEffect(() => {
   //   fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/meds")
@@ -23,36 +23,30 @@ const MedicationListPage = () => {
   //     .then((response) => setMeds(response));
   // }, [medsName, medsDescription]);
 
-  let handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("JSON object sent in request body: ", {
+    let data = {
       name: medsName,
       description: medsDescription,
-    });
+    };
     fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/meds", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: medsName,
-        description: medsDescription,
-      }),
+      body: JSON.stringify(data),
     })
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.err) {
+          console.log(data.err);
+        } else {
+          console.log("Medication created successfully");
+          setMedsName("");
+          setMedsDescription("");
         }
-        throw new Error("Some error occured");
       })
-      .then((res) => {
-        console.log("User created successfully");
-        setMedsName("");
-        setMedsDescription("");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
 
   return (

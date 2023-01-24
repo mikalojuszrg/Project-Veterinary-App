@@ -9,10 +9,13 @@ import PetHealthCard from "../../components/PetHealthCard/PetHealthCard";
 
 const PetLogPage = () => {
   const { id } = useParams();
+  const [petInfo, setPetInfo] = useState([]);
   const [logData, setLogData] = useState([]);
   const [comment, setComment] = useState("");
   const [meds, setMeds] = useState([]);
-  const [show, setShow] = useState(false);
+  const [selectedMed, setSelectedMed] = useState("");
+  const [logForm, setLogForm] = useState(false);
+  const [prescriptionForm, setPrescriptionForm] = useState(false);
   const [prescription, setPrescription] = useState([]);
 
   const [logStatus, setLogStatus] = useState("");
@@ -46,6 +49,9 @@ const PetLogPage = () => {
       });
   };
 
+  console.log(selectedMed);
+  console.log(comment);
+
   useEffect(() => {
     fetch(`https://glittery-dull-snickerdoodle.glitch.me/v1/logs/${id}`)
       .then((resp) => resp.json())
@@ -58,6 +64,18 @@ const PetLogPage = () => {
       .then((response) => setMeds(response));
   }, []);
 
+  useEffect(() => {
+    fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/pets")
+      .then((resp) => resp.json())
+      .then((response) => setPetInfo(response));
+  }, []);
+
+  const getPetName = (id) => {
+    return petInfo.find((pet) => pet.id === Number(id));
+  };
+
+  const pet = getPetName(id);
+
   const handleSubmit = (value) => {
     setPrescription((prevArray) => [...prevArray, value]);
   };
@@ -66,32 +84,38 @@ const PetLogPage = () => {
     <div>
       <Header />
       <div className={styles.container__subheading}>
-        {logData.length > 0 && <h1>{logData[0].name}: Health Records</h1>}
+        {pet && <h1>{pet.name}: Health Records</h1>}
         <div className={styles.container__buttons}>
-          <Button active={true} onClick={() => setShow(true)}>
+          <Button active={true} onClick={() => setLogForm(true)}>
             ADD LOG
           </Button>
-          <Button>ADD PRESCRIPTION</Button>
+          <Button active={true} onClick={() => setPrescriptionForm(true)}>
+            ADD PRESCRIPTION
+          </Button>
         </div>
       </div>
-      {/* <aside
+      <aside
         className={
-          show ? styles.container__modalOn : styles.container__modalOff
+          prescriptionForm
+            ? styles.container__prescriptionModalOn
+            : styles.container__prescriptionModalOff
         }
       >
         <PrescriptionForm
+          selectedMed={selectedMed}
+          setSelectedMed={setSelectedMed}
           handleSubmit={handleSubmit}
           logData={logData}
           meds={meds}
           id={id}
           comment={comment}
           setComment={setComment}
-          onClick={() => setShow(false)}
+          onClick={() => setPrescriptionForm(false)}
         />
-      </aside> */}
+      </aside>
       <aside
         className={
-          show ? styles.container__modalOn : styles.container__modalOff
+          logForm ? styles.container__modalOn : styles.container__modalOff
         }
       >
         <LogForm
@@ -100,7 +124,7 @@ const PetLogPage = () => {
           logDescription={logDescription}
           setLogDescription={setLogDescription}
           setLogStatus={setLogStatus}
-          onClick={() => setShow(false)}
+          onClick={() => setLogForm(false)}
         />
       </aside>
       <main className={styles.container__logs}>

@@ -33,6 +33,7 @@ const MedsForm = ({
           active={false}
           type="submit"
           className={styles.form__openButton}
+          onClick={onClick}
         >
           ADD MEDICATION
         </Button>

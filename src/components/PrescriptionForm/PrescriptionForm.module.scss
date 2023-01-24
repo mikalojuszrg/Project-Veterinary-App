@@ -8,6 +8,12 @@
   background-color: rgb(255, 132, 0);
   position: relative;
 
+  &__warning {
+    margin-bottom: -1rem;
+    color: rgb(8, 0, 255);
+    text-align: center;
+  }
+
   &__heading {
     position: absolute;
     top: 1rem;
