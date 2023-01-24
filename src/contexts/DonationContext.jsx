@@ -3,10 +3,10 @@ import { useState, createContext } from "react";
 const DonationContext = createContext();
 
 const DonationProvider = ({ children }) => {
-  const [donated, setDonated] = useState([]);
+  const [donated, setDonated] = useState(false);
 
-  const toggleDonated = (newDonation) => {
-    setDonated((prevArray) => [...prevArray, newDonation]);
+  const toggleDonated = () => {
+    setDonated(true);
   };
 
   return (

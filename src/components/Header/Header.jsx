@@ -13,11 +13,12 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Logo />
-
-      <p className={styles.header__text}>
-        Thank you, <strong>{donator.name}</strong>, for your {donator.sum}{" "}
-        donation!
-      </p>
+      {donated && (
+        <p className={styles.header__text}>
+          Thank you, <strong>{donator.name}</strong>, for your {donator.sum}{" "}
+          donation!
+        </p>
+      )}
 
       <Navigation />
     </header>

@@ -16,13 +16,12 @@ const DonateForm = ({
     sum: donationSum,
   };
 
-  const { toggleDonated, donated } = useContext(DonationContext);
+  const { toggleDonated } = useContext(DonationContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     toggleDonated(donationInfo);
     localStorage.setItem("Donation Info", JSON.stringify(donationInfo));
-    console.log(donated);
   };
 
   return (
