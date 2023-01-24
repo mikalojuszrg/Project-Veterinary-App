@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import PetInfoCard from "../../components/PetInfoCard/PetInfoCard";
 import PetsForm from "../../components/PetsForm/PetsForm";
 import Button from "../../components/Button/Button";
+import DonateForm from "../../components/DonateForm/DonateForm";
 
 const PetListPage = () => {
   const [petInfo, setPetInfo] = useState([]);
@@ -12,6 +13,9 @@ const PetListPage = () => {
   const [petAge, setPetAge] = useState("");
   const [petEmail, setPetEmail] = useState("");
   const [show, setShow] = useState(false);
+  const [donationForm, setDonationForm] = useState(false);
+  const [donationSum, setDonationSum] = useState("");
+  const [donationName, setDonationName] = useState("");
 
   useEffect(() => {
     fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/pets")
@@ -69,13 +73,12 @@ const PetListPage = () => {
       });
   };
 
-  console.log(show);
-
   return (
     <div className={styles.container}>
       <Header />
       <div className={styles.container__subheading}>
         <h1>Pet List</h1>
+        <Button onClick={() => setDonationForm(true)}>DONATE</Button>
         <Button
           active={true}
           onClick={() => setShow((prevValue) => !prevValue)}
@@ -97,6 +100,21 @@ const PetListPage = () => {
           petName={petName}
           setPetName={setPetName}
           onClick={() => setShow(false)}
+        />
+      </aside>
+      <aside
+        className={
+          donationForm
+            ? styles.container__donateModalOn
+            : styles.container__donateModalOff
+        }
+      >
+        <DonateForm
+          onClick={() => setDonationForm(false)}
+          donationName={donationName}
+          setDonationName={setDonationName}
+          donationSum={donationSum}
+          setDonationSum={setDonationSum}
         />
       </aside>
       <main className={styles.container__pets}>

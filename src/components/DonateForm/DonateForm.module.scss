@@ -1,0 +1,68 @@
+.form {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 20rem;
+  padding: 6rem 4rem 3rem 4rem;
+  background-color: rgb(255, 132, 0);
+  position: relative;
+
+  &__heading {
+    position: absolute;
+    top: 1rem;
+    right: 130px;
+  }
+
+  &__donateSelection {
+    display: flex;
+    justify-content: space-around;
+    color: black;
+
+    div {
+      border: 2px solid black;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+  }
+
+  &__unselectedDonation {
+    background-color: white;
+  }
+
+  &__selectedDonation {
+    background-color: red;
+    color: white;
+  }
+
+  &__closeButton {
+    border: none;
+    background-color: transparent;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+
+    svg {
+      color: red;
+    }
+  }
+
+  input {
+    padding: 1rem 1rem;
+    border-radius: 0.4rem;
+    border: none;
+  }
+
+  Button,
+  span {
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 2rem;
+    color: black;
+    padding: 1rem 1rem;
+  }
+}
