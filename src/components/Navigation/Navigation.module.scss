@@ -1,4 +1,15 @@
-.navigation {
+.container {
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+.navigationDark {
   display: flex;
   gap: 2rem;
   list-style: none;
@@ -6,6 +17,21 @@
   a {
     text-decoration: none;
     color: black;
+
+    &:hover {
+      color: rgb(74, 72, 72);
+    }
+  }
+}
+
+.navigationLight {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+    color: white;
 
     &:hover {
       color: rgb(74, 72, 72);

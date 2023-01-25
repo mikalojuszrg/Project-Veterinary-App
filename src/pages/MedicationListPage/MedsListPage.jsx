@@ -17,12 +17,6 @@ const MedicationListPage = () => {
       .then((response) => setMeds(response));
   }, [medsName, medsDescription]);
 
-  // useEffect(() => {
-  //   fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/meds")
-  //     .then((resp) => resp.json())
-  //     .then((response) => setMeds(response));
-  // }, [medsName, medsDescription]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     let data = {
@@ -50,8 +44,8 @@ const MedicationListPage = () => {
   };
 
   return (
-    <div>
-      <Header className={styles.container} />
+    <div className={styles.container}>
+      <Header />
       <div className={styles.container__subheading}>
         <h1>Medication List</h1>
         <Button

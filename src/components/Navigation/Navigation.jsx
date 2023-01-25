@@ -7,20 +7,26 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 const Navigation = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   return (
-    <nav>
-      {darkMode ? (
-        <FaSun onClick={() => toggleDarkMode()} />
-      ) : (
-        <FaMoon onClick={() => toggleDarkMode()} />
-      )}
-      <ul className={styles.navigation}>
+    <nav className={styles.container}>
+      <ul className={darkMode ? styles.navigationLight : styles.navigationDark}>
         <Link to={"/"}>
-          <li className={styles.navigation__item}>Pets</li>
+          <li>Pets</li>
         </Link>
         <Link to={"/meds"}>
-          <li className={styles.navigation__item}>Medications</li>
+          <li>Medications</li>
         </Link>
       </ul>
+      {darkMode ? (
+        <FaSun
+          className={styles.container__icon}
+          onClick={() => toggleDarkMode()}
+        />
+      ) : (
+        <FaMoon
+          className={styles.container__icon}
+          onClick={() => toggleDarkMode()}
+        />
+      )}
     </nav>
   );
 };

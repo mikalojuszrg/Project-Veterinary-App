@@ -81,7 +81,7 @@ const PetLogPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
       <div className={styles.container__subheading}>
         {pet && <h1>{pet.name}: Health Records</h1>}
